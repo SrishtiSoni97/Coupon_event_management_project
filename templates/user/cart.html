@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Cart</h2>
+<div id="cart"></div>
+<button onclick="location.href='/payment/'">Proceed to Payment</button>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+let html = "";
+cart.forEach(i => html += `<p>${i.title} - ₹${i.price}</p>`);
+document.getElementById("cart").innerHTML = html;
+</script>
+
+{% endblock %}

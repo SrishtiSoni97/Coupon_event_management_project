@@ -1,0 +1,130 @@
+/* =========================
+   Modern Auth UI Theme
+   Inspired by Gemini style
+   ========================= */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #3b4cca, #4f7cff);
+  color: #1f2937;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-card h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.auth-card .subtitle {
+  font-size: 14px;
+  margin-bottom: 24px;
+  color: #4b5563;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s border-color, 0.2s box-shadow;
+}
+
+.auth-card input:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 8px rgba(79,124,255,0.3);
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 14px;
+  background: #4f7cff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.25s background;
+}
+
+.btn-auth:hover {
+  background: #365ac9;
+}
+
+.switch-text {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.switch-text a {
+  color: #4f7cff;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* Alerts */
+.message-container {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 480px;
+  z-index: 1000;
+}
+
+.message {
+  margin: 6px 0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.message.success {
+  background: #dbf3db;
+  color: #1f6f26;
+}
+
+.message.error {
+  background: #fce8e8;
+  color: #991b1b;
+}

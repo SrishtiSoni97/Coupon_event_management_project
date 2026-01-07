@@ -1,0 +1,15 @@
+<nav class="admin-navbar">
+  <div class="nav-left">
+    🎟️ <span class="logo">EventPass Admin</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+    <a href="{% url 'admin_events' %}">Events</a>
+  </div>
+
+  <div class="nav-right">
+    <span>{{ request.user.first_name }}</span>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</nav>

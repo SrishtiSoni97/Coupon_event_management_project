@@ -1,0 +1,15 @@
+{% extends "admin/admin-base.html" %}
+{% block title %}Scan Result{% endblock %}
+
+{% block content %}
+<h2>Ticket Scan Result</h2>
+
+{% if status == "SUCCESS" %}
+  <p style="color:green;">✅ Ticket Valid</p>
+  <p>Ticket Code: {{ ticket.ticket_code }}</p>
+  <p>Redeemed At: {{ ticket.redeemed_at }}</p>
+{% else %}
+  <p style="color:red;">❌ {{ message }}</p>
+{% endif %}
+
+{% endblock %}

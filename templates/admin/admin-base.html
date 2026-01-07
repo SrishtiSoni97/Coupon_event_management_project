@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Admin Panel{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">
+</head>
+<body>
+
+{% include "partials/admin-navbar.html" %}
+
+<main class="admin-content">
+  {% block content %}{% endblock %}
+</main>
+
+{% include "partials/admin-footer.html" %}
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "admin/admin-base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<p class="subtitle">System overview</p>
+
+<a href="{% url 'add_event' %}" class="btn-primary">
+  + Add Event
+</a>
+
+<div class="stats-grid">
+  <div class="stat-card">Users<br><strong>{{ total_users }}</strong></div>
+  <div class="stat-card">Events<br><strong>{{ total_events }}</strong></div>
+  <div class="stat-card">Orders<br><strong>{{ total_orders }}</strong></div>
+  <div class="stat-card">Tickets<br><strong>{{ total_tickets }}</strong></div>
+</div>
+{% endblock %}

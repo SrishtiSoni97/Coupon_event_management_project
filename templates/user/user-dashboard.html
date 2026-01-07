@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>User Dashboard</h2>
+
+<div class="dashboard-grid">
+  <div class="card">
+    <h3>Events</h3>
+    <button onclick="location.href='/events/'">View Events</button>
+  </div>
+
+  <div class="card">
+    <h3>My Tickets</h3>
+    <button onclick="location.href='/tickets/'">My Tickets</button>
+  </div>
+</div>
+
+{% endblock %}

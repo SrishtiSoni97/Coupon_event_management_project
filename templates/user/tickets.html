@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>My Ticket</h2>
+<h3 id="ticket"></h3>
+
+<script>
+document.getElementById("ticket").innerText =
+  localStorage.getItem("ticket");
+</script>
+
+{% endblock %}
