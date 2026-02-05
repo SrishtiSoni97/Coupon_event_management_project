@@ -1,0 +1,22 @@
+{% extends "user/user-base.html" %}
+{% block title %}My Tickets{% endblock %}
+
+{% block content %}
+<h2 class="page-title">My Tickets</h2>
+
+<div class="ticket-events-wrapper">
+  {% for event in events %}
+    <div class="ticket-event-card">
+      <div class="ticket-event-title">{{ event.title }}</div>
+      <div class="ticket-event-date">📅 {{ event.event_date }}</div>
+
+      <a href="{% url 'tickets:my_tickets_by_event' event.id %}"
+         class="view-ticket-btn">
+        View Tickets
+      </a>
+    </div>
+  {% empty %}
+    <p>No tickets found.</p>
+  {% endfor %}
+</div>
+{% endblock %}

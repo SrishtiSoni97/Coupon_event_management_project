@@ -1,0 +1,58 @@
+{% extends "user/user-base.html" %}
+{% load static %}
+
+{% block title %}Order Successful{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+  <div class="success-box">
+
+    <!-- ICON -->
+    <div class="success-icon">
+      🎉
+    </div>
+
+    <!-- TITLE -->
+    <h2 class="success-title">
+      Payment Successful!
+    </h2>
+
+    <!-- MESSAGE -->
+    <p class="success-message">
+      Your booking has been confirmed. Your tickets are ready.
+    </p>
+
+    <!-- ORDER DETAILS -->
+    <div class="success-details">
+      <p>
+        <strong>Order ID:</strong>
+        <span>{{ order.order_code }}</span>
+      </p>
+
+      <p>
+        <strong>Event:</strong>
+        <span>{{ order.event.title }}</span>
+      </p>
+
+      <p>
+        <strong>Total Paid:</strong>
+        <span>₹ {{ order.total_amount }}</span>
+      </p>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="success-actions">
+      <a href="{% url 'tickets:my_ticket_events' %}" class="btn-primary">
+        🎟 View My Tickets
+      </a>
+
+      <a href="{% url 'home' %}" class="btn-outline">
+        Back to Events
+      </a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

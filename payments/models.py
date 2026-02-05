@@ -10,7 +10,11 @@ class Payment(models.Model):
     ]
 
     payment_gateway = models.CharField(max_length=50)
-    transaction_id = models.CharField(max_length=100, unique=True)
+    transaction_id = models.CharField(max_length=255,
+    null=True,
+    blank=True,
+    unique=True
+    )
     payment_method = models.CharField(max_length=50)
 
     amount = models.DecimalField(

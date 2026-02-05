@@ -1,0 +1,646 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* ================= BASE ================= */
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================= NAVBAR ================= */
+.user-nav {
+  height: 64px;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-link {
+  color: #c7d2fe;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #3b82f6;
+}
+
+.nav-user {
+  background: rgba(59,130,246,0.15);
+  color: #e0e7ff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.logout {
+  color: #fca5a5;
+}
+
+.nav-user-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+
+/* ================= HERO ================= */
+.hero-section {
+  height: 260px;
+  background: linear-gradient(135deg, #020617, #1e293b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section h1 {
+  color: #fff;
+  font-size: 40px;
+}
+
+.hero-section p {
+  color: #cbd5f5;
+  margin-top: 8px;
+}
+
+/* ================= MAIN ================= */
+.main-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 24px;
+}
+
+/* ================= BUTTONS ================= */
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-outline {
+  border: 1px solid #3b82f6;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.btn-success {
+  background: #16a34a;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+
+/* ================= FILTER ================= */
+.filter-bar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* ================= EVENT GRID ================= */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.event-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+}
+
+.event-image {
+  height: 180px;
+  position: relative;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #16a34a;
+  color: white;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.event-body {
+  padding: 16px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.event-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+}
+
+/* ================= CART (SINGLE COLUMN) ================= */
+.simple-cart {
+  max-width: 720px;
+  margin: 40px auto;
+}
+
+.simple-cart h2 {
+  margin-bottom: 20px;
+}
+
+.simple-cart-item {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.simple-cart-item img {
+  width: 120px;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.qty {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.qty a {
+  padding: 4px 10px;
+  border: 1px solid #cbd5f5;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.remove {
+  color: #dc2626;
+  font-size: 14px;
+}
+
+/* ================= CART TOTAL ================= */
+
+.cart-summary {
+  margin-top: 30px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;   /* 🔑 THIS fixes overlap */
+}
+
+.cart-summary h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart-summary .total-amount {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+
+/* ================= CHECKOUT ================= */
+.checkout-box {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+/* ================= PAYMENT ================= */
+/* ================= PAYMENT FAILURE ================= */
+
+.payment-box {
+  max-width: 420px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+.payment-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+
+.site-footer p {
+  color: #64748b;
+  font-size: 13px;
+  
+}
+.site-footer {
+  text-align: center;
+  padding: 16px 0;
+}
+
+
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #0f172a;
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simple-cart-item {
+    flex-direction: column;
+  }
+}
+/* ================= TICKETS ================= */
+
+.section-title {
+  margin: 30px 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.section-title.muted {
+  color: #94a3b8;
+}
+
+.tickets-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* Ticket Card */
+.ticket-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.ticket-card:hover {
+  transform: translateY(-6px);
+}
+
+.ticket-code {
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.event-name {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+/* QR Thumbnail */
+.qr-thumb {
+  width: 120px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.qr-thumb:hover {
+  transform: scale(1.08);
+}
+
+/* Status Badge */
+.status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ================= QR MODAL ================= */
+
+.qr-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.75);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+.qr-modal-content img {
+  width: 260px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 26px;
+  cursor: pointer;
+  color: #334155;
+}
+
+.message-container {
+  position: fixed;
+  top: 72px; /* BELOW navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 90%;
+  max-width: 420px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.message.info {
+  background: #e0f2fe;
+  color: #075985;
+  border-left: 4px solid #0284c7;
+}
+
+.message.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left: 4px solid #dc2626;
+}
+
+.message.success {
+  background: #dcfce7;
+  color: #166534;
+  border-left: 4px solid #16a34a;
+}
+
+
+/* ================= EVENT LIST (MY TICKETS) ================= */
+
+.ticket-events-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.ticket-event-card {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ticket-event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.ticket-event-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ticket-event-date {
+  font-size: 14px;
+  color: #475569;
+}
+
+.view-ticket-btn {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.view-ticket-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+}
+
+/* ================= PAYMENT PAGE ================= */
+
+.payment-box {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.payment-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+.payment-details {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.payment-details p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+.payment-details strong {
+  color: #020617;
+}
+
+.payment-box button {
+  margin-top: 12px;
+}
+
+/* Stripe-style subtle note */
+.payment-box p.note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+
+/* ================= ORDER SUCCESS ================= */
+
+.success-box {
+  max-width: 420px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 36px 28px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  animation: fadeUp 0.4s ease;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.success-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #16a34a;
+  margin-bottom: 8px;
+}
+
+.success-message {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+.success-details {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.success-details p {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.success-details strong {
+  color: #0f172a;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0 }
+  to { transform: scale(1); opacity: 1 }
+}
+

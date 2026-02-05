@@ -1,0 +1,82 @@
+{% extends "user/user-base.html" %}
+{% block title %}{{ event.title }} Tickets{% endblock %}
+
+{% block content %}
+
+<h2 class="page-title">{{ event.title }} Tickets</h2>
+
+<!-- ================= ACTIVE TICKETS ================= -->
+<h3 class="section-title">Active Tickets</h3>
+
+<div class="tickets-wrapper">
+  {% for ticket in active_tickets %}
+    <div class="ticket-card">
+      <p class="ticket-code">{{ ticket.ticket_code }}</p>
+      <p class="event-name">{{ event.title }}</p>
+
+      {% if ticket.qr_code %}
+        <img src="{{ ticket.qr_code.url }}"
+             class="qr-thumb"
+             alt="QR Code"
+             onclick="openQR('{{ ticket.qr_code.url }}')">
+      {% else %}
+        <div class="qr-placeholder">
+          QR code generating…
+        </div>
+      {% endif %}
+
+      <span class="status active">ACTIVE</span>
+    </div>
+  {% empty %}
+    <p>No active tickets.</p>
+  {% endfor %}
+</div>
+
+<!-- ================= EXPIRED / USED TICKETS ================= -->
+<h3 class="section-title muted">Used / Expired</h3>
+
+<div class="tickets-wrapper">
+  {% for ticket in expired_tickets %}
+    <div class="ticket-card expired">
+      <p class="ticket-code">{{ ticket.ticket_code }}</p>
+      <p class="event-name">{{ event.title }}</p>
+
+      {% if ticket.qr_code %}
+        <img src="{{ ticket.qr_code.url }}"
+             class="qr-thumb faded"
+             alt="QR Code">
+      {% else %}
+        <div class="qr-placeholder faded">
+          QR not available
+        </div>
+      {% endif %}
+
+      <span class="status expired">EXPIRED</span>
+    </div>
+  {% empty %}
+    <p>No expired tickets.</p>
+  {% endfor %}
+</div>
+
+<!-- ================= QR MODAL ================= -->
+<div id="qrModal" class="qr-modal" style="display:none;">
+  <div class="qr-modal-content">
+    <span class="close-btn" onclick="closeQR()">×</span>
+    <img id="qrModalImg" alt="QR Code">
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+function openQR(src) {
+  document.getElementById("qrModal").style.display = "flex";
+  document.getElementById("qrModalImg").src = src;
+}
+
+function closeQR() {
+  document.getElementById("qrModal").style.display = "none";
+  document.getElementById("qrModalImg").src = "";
+}
+</script>
+
+{% endblock %}

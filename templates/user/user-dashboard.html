@@ -1,18 +1,93 @@
-{% extends "base.html" %}
+{% extends "user/user-base.html" %}
+{% block title %}Browse Events{% endblock %}
+
 {% block content %}
 
-<h2>User Dashboard</h2>
+<section class="browse-section">
 
-<div class="dashboard-grid">
-  <div class="card">
-    <h3>Events</h3>
-    <button onclick="location.href='/events/'">View Events</button>
+  <h2 class="page-title">Browse Events</h2>
+
+  <!-- FILTER BAR -->
+  <form method="get" class="filter-bar">
+    <select name="status">
+      <option value="active" {% if selected_status == "active" %}selected{% endif %}>
+        Active Events
+      </option>
+      <option value="expired" {% if selected_status == "expired" %}selected{% endif %}>
+        Expired Events
+      </option>
+    </select>
+
+    <select name="category">
+      <option value="all">All Categories</option>
+      {% for cat in categories %}
+        <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>
+          {{ cat }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="btn-primary">Apply</button>
+  </form>
+
+  <!-- EVENTS GRID -->
+  <div class="event-grid">
+
+    {% for event in events %}
+    <div class="event-card">
+
+      <!-- IMAGE -->
+      <div class="event-image">
+        {% if event.event_date < today %}
+    <span class="event-badge expired">Expired</span>
+
+  {% elif event.available_coupons > 0 %}
+    <span class="event-badge active">Active</span>
+
+  {% else %}
+    <span class="event-badge sold">Sold Out</span>
+  {% endif %}
+
+
+        {% if event.event_image %}
+          <img src="{{ event.event_image.url }}" alt="{{ event.title }}">
+        {% else %}
+          <div class="image-placeholder">No Image</div>
+        {% endif %}
+      </div>
+
+      <!-- BODY -->
+      <div class="event-body">
+        <h3>{{ event.title }}</h3>
+        <span class="category">{{ event.category }}</span>
+
+        <p class="event-date">📅 {{ event.event_date }}</p>
+        <p class="tickets">🎟 {{ event.available_coupons }} / {{ event.total_coupons }} available</p>
+
+        <p class="price">₹ {{ event.price }}</p>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="event-actions">
+        {% if event.available_coupons > 0 %}
+          <a href="{% url 'add_to_cart' event.id %}" class="btn-outline">
+            🛒 Add to Cart
+          </a>
+          <a href="{% url 'buy_now' event.id %}" class="btn-primary">
+            ⚡ Buy Now
+          </a>
+        {% else %}
+          <button class="btn-disabled" disabled>Sold Out</button>
+        {% endif %}
+      </div>
+
+    </div>
+    {% empty %}
+      <p class="empty-text">No events available.</p>
+    {% endfor %}
+
   </div>
 
-  <div class="card">
-    <h3>My Tickets</h3>
-    <button onclick="location.href='/tickets/'">My Tickets</button>
-  </div>
-</div>
+</section>
 
 {% endblock %}

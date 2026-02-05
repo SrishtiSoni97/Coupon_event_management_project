@@ -2,17 +2,70 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
+
 <h1>Admin Dashboard</h1>
-<p class="subtitle">System overview</p>
+<p class="subtitle">Overview of your events and orders</p>
 
 <a href="{% url 'add_event' %}" class="btn-primary">
   + Add Event
 </a>
 
+<!-- ================= SUMMARY CARDS ================= -->
 <div class="stats-grid">
-  <div class="stat-card">Users<br><strong>{{ total_users }}</strong></div>
-  <div class="stat-card">Events<br><strong>{{ total_events }}</strong></div>
-  <div class="stat-card">Orders<br><strong>{{ total_orders }}</strong></div>
-  <div class="stat-card">Tickets<br><strong>{{ total_tickets }}</strong></div>
+
+  <div class="stat-card">
+    Users<br>
+    <strong>{{ total_users }}</strong>
+  </div>
+
+  <div class="stat-card">
+    Events<br>
+    <strong>{{ total_events }}</strong>
+  </div>
+
+  <div class="stat-card">
+    Orders<br>
+    <strong>{{ total_orders }}</strong>
+  </div>
+
+  <div class="stat-card">
+    Tickets<br>
+    <strong>{{ total_tickets }}</strong>
+  </div>
+
 </div>
+
+<!-- ================= RECENT ORDERS ================= -->
+<h3 class="section-title">Recent Orders</h3>
+
+<table class="event-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>User</th>
+      <th>Event</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for order in recent_orders %}
+    <tr>
+      <td>{{ order.order_code }}</td>
+      <td>{{ order.user.email }}</td>
+      <td>{{ order.event.title }}</td>
+      <td>₹ {{ order.total_amount }}</td>
+      <td>{{ order.order_status }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" style="text-align:center;">
+        No orders found.
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}

@@ -12,7 +12,6 @@ from accounts.utils.account_utils import (
     is_admin
 )
 
-
 def register_view(request):
     if request.method == 'POST':
         data = {
@@ -21,6 +20,7 @@ def register_view(request):
             "email": request.POST.get('email'),
             "mobile": request.POST.get('mobile'),
             "password": request.POST.get('password'),
+            "type": request.POST.get('type'),
         }
 
         if not validate_required_fields(data):
@@ -31,13 +31,20 @@ def register_view(request):
             messages.error(request, "Email already exists")
             return render(request, "auth/register.html")
 
-        create_user(**data)
+        create_user(
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            email=data["email"],
+            mobile=data["mobile"],
+            password=data["password"],
+            user_type=data["type"],
+        )
 
         messages.success(request, "Registration successful. Please login.")
         return redirect("login")
 
-   
     return render(request, "auth/register.html")
+
 
 
 
@@ -57,10 +64,15 @@ def login_view(request):
 
             return redirect('user_dashboard')
 
-        messages.error(request, "Invalid email or password")
+        
+        messages.error(
+            request,
+            "Invalid email or password. Please try again."
+        )
+        return redirect("login")
 
-    
     return render(request, 'auth/login.html')
+
 
         
 
@@ -77,6 +89,6 @@ def admin_dashboard(request):
     return render(request, 'admin/admin-dashboard.html')
 
 
-@login_required
-def user_dashboard(request):
-    return render(request, 'user/user_dashboard.html')
+# @login_required
+# def user_dashboard(request):
+#     return render(request, 'user/user-dashboard.html')

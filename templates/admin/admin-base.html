@@ -1,18 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>{% block title %}Admin Panel{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">
 </head>
+
 <body>
 
+<!-- ================= NAVBAR ================= -->
 {% include "partials/admin-navbar.html" %}
 
+<!-- ================= MESSAGES (IMPORTANT) ================= -->
+{% if messages %}
+<div class="message-container">
+  {% for message in messages %}
+    <div class="message {{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- ================= MAIN CONTENT ================= -->
 <main class="admin-content">
   {% block content %}{% endblock %}
 </main>
 
+<!-- ================= FOOTER ================= -->
 {% include "partials/admin-footer.html" %}
 
 </body>

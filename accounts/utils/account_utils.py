@@ -9,9 +9,7 @@ def is_email_exists(email):
     
     return Users.objects.filter(email=email).exists()
 
-
-def create_user(first_name, last_name, email, mobile, password):
-    
+def create_user(first_name, last_name, email, mobile, password, user_type):
     user = Users.objects.create_user(
         email=email,
         password=password,
@@ -19,14 +17,15 @@ def create_user(first_name, last_name, email, mobile, password):
     )
     user.first_name = first_name
     user.last_name = last_name
-    user.type = 'USER'
+    user.type = user_type  # USER or ADMIN
     user.save()
     return user
 
 
+
+
 def authenticate_user(request, email, password):
-    
-    return authenticate(request, email=email, password=password)
+    return authenticate(request, username=email, password=password)
 
 
 def is_admin(user):

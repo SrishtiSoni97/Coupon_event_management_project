@@ -1,48 +1,118 @@
 {% extends "admin/admin-base.html" %}
-{% block title %}Add Event{% endblock %}
+{% load static %}
+
+{% block title %}
+  {% if is_edit %}Edit Event{% else %}Add Event{% endif %}
+{% endblock %}
 
 {% block content %}
-<h2 class="page-title">Add New Event</h2>
 
-<div class="event-card">
-  <form method="post" enctype="multipart/form-data" class="event-form">
-    {% csrf_token %}
+<h2 class="page-title">
+  {% if is_edit %}Edit Event{% else %}Add Event{% endif %}
+</h2>
 
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Title</label>
-        <input type="text" name="title" required>
-      </div>
+<form method="POST" enctype="multipart/form-data" class="form-card">
+  {% csrf_token %}
 
-      <div class="form-group">
-        <label>Category</label>
-        <input type="text" name="category" required>
-      </div>
+  <!-- EVENT TITLE -->
+  <div class="form-group">
+    <label>Event Title</label>
+    <input type="text"
+           name="title"
+           value="{{ event.title|default:'' }}"
+           required>
+  </div>
 
-      <div class="form-group">
-        <label>Date</label>
-        <input type="date" name="event_date" required>
-      </div>
+  <!-- CATEGORY (DROPDOWN) -->
+  <div class="form-group">
+    <label>Category</label>
+    <select name="category" required>
+      <option value="" disabled {% if not event %}selected{% endif %}>
+        Select Category
+      </option>
 
-      <div class="form-group">
-        <label>Price</label>
-        <input type="number" step="0.01" name="price" required>
-      </div>
+      <option value="Music" {% if event.category == "Music" %}selected{% endif %}>Music</option>
+      <option value="Concert" {% if event.category == "Concert" %}selected{% endif %}>Concert</option>
+      <option value="Festival" {% if event.category == "Festival" %}selected{% endif %}>Festival</option>
+      <option value="Comedy Show" {% if event.category == "Comedy Show" %}selected{% endif %}>Comedy Show</option>
 
-      <div class="form-group">
-        <label>Total Tickets</label>
-        <input type="number" name="total_coupons" required>
-      </div>
+      <option value="Technology" {% if event.category == "Technology" %}selected{% endif %}>Tech</option>
+      <option value="Conference" {% if event.category == "Conference" %}selected{% endif %}>Conference</option>
+      <option value="Hackathon" {% if event.category == "Hackathon" %}selected{% endif %}>Hackathon</option>
 
-      <div class="form-group">
-        <label>Event Image</label>
-        <input type="file" name="event_image">
-      </div>
-    </div>
+      <option value="Workshop" {% if event.category == "Workshop" %}selected{% endif %}>Workshop</option>
+      <option value="Seminar" {% if event.category == "Seminar" %}selected{% endif %}>Seminar</option>
 
-    <button type="submit" class="btn-primary">
-      Create Event
-    </button>
-  </form>
-</div>
+      <option value="Sports" {% if event.category == "Sports" %}selected{% endif %}>Sports</option>
+      <option value="Marathon" {% if event.category == "Marathon" %}selected{% endif %}>Marathon</option>
+
+      <option value="Art Exhibition" {% if event.category == "Art Exhibition" %}selected{% endif %}>Art Exhibition</option>
+      <option value="Theatre" {% if event.category == "Theatre" %}selected{% endif %}>Theatre</option>
+
+      <option value="Networking Event" {% if event.category == "Networking Event" %}selected{% endif %}>Networking Event</option>
+      <option value="College Event" {% if event.category == "College Event" %}selected{% endif %}>College Event</option>
+    </select>
+  </div>
+
+  <!-- EVENT DATE -->
+  <div class="form-group">
+    <label>Event Date</label>
+    <input type="date"
+           name="event_date"
+           min="{{ today|date:'Y-m-d' }}"
+           value="{{ event.event_date|date:'Y-m-d' }}"
+           required>
+  </div>
+
+  <!-- LAST PURCHASE DATE -->
+  <div class="form-group">
+    <label>Ticket Last Purchase Date</label>
+    <input type="date"
+           name="event_ticket_last_purchase_date"
+           min="{{ today|date:'Y-m-d' }}"
+           value="{{ event.event_ticket_last_purchase_date|date:'Y-m-d' }}"
+           required>
+  </div>
+
+  <!-- PRICE -->
+  <div class="form-group">
+    <label>Price (₹)</label>
+    <input type="number"
+           name="price"
+           min="0"
+           step="0.01"
+           value="{{ event.price|default:'' }}"
+           required>
+  </div>
+
+  <!-- TOTAL TICKETS -->
+  <div class="form-group">
+    <label>Total Tickets</label>
+    <input type="number"
+           name="total_coupons"
+           min="1"
+           value="{{ event.total_coupons|default:'' }}"
+           required>
+  </div>
+
+  <!-- EVENT IMAGE -->
+  <div class="form-group">
+    <label>Event Image</label>
+    <input type="file" name="event_image">
+
+    {% if is_edit and event.event_image %}
+      <p class="image-note">
+        Current Image:<br>
+        <img src="{{ event.event_image.url }}" width="120">
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" class="btn-primary">
+    {% if is_edit %}Update Event{% else %}Add Event{% endif %}
+  </button>
+
+</form>
+
 {% endblock %}

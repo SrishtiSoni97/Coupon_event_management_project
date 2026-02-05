@@ -44,6 +44,13 @@ class Ticket(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
+    qr_code = models.ImageField(
+    upload_to="tickets/",
+    null=True,
+    blank=True
+    )
+
+
     class Meta:
         db_table = 'tickets'
 

@@ -18,13 +18,29 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from events.views import user_dashboard
+from django.contrib import admin
+from django.urls import path, include
+from events.views import user_dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
-    path('', include('events.urls')),
+
+    # Landing page (User Dashboard)
+    path('', user_dashboard, name='home'),
+
+    # App URLs
+  
+
+    path("payment/", include("payments.urls")),
+    path("tickets/", include("tickets.urls")),
+    path("", include("orders.urls")),
+    path("", include("events.urls")),
+    path("", include("accounts.urls")),
+
 
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(

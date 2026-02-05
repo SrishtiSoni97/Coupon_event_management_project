@@ -1,0 +1,29 @@
+{% extends "user/user-base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main-container">
+  <div class="payment-box">
+
+    <h2>Secure Payment</h2>
+
+    <div class="payment-details">
+      <p><strong>Event:</strong> {{ event.title }}</p>
+      <p><strong>Tickets:</strong> {{ qty }}</p>
+      <p><strong>Total Amount:</strong> ₹ {{ total_amount }}</p>
+    </div>
+
+    <!-- ✅ STRIPE PAY BUTTON -->
+    <a href="{% url 'stripe_session' %}"
+       class="btn-primary"
+       style="width:100%; display:block; text-align:center;">
+       Pay with Card
+    </a>
+
+    <p style="margin-top:12px; font-size:13px; color:#64748b;">
+      You will be redirected to Stripe’s secure payment page.
+    </p>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "user/user-base.html" %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+  <div class="payment-box">
+
+    <!-- ICON -->
+    <div style="font-size:42px; margin-bottom:10px;">
+      ❌
+    </div>
+
+    <h2 style="color:#dc2626; margin-bottom:10px;">
+      Payment Failed
+    </h2>
+
+    <p style="color:#475569; margin-bottom:6px;">
+      Your payment could not be completed.
+    </p>
+
+    <p style="color:#64748b; font-size:14px;">
+      Please try again or choose another event.
+    </p>
+
+    <!-- ACTIONS -->
+    <div class="payment-actions" style="margin-top:24px;">
+      <a href="{% url 'cart' %}" class="btn-primary">
+        🔄 Retry Payment
+      </a>
+
+      <a href="{% url 'user_dashboard' %}" class="btn-outline">
+        ← Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

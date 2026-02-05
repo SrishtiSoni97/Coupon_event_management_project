@@ -15,6 +15,8 @@ class Order(models.Model):
         unique=True
     )
 
+    quantity = models.PositiveIntegerField()
+
     total_amount = models.DecimalField(
         max_digits=10,
         decimal_places=2

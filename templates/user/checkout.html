@@ -1,0 +1,30 @@
+{% extends "user/user-base.html" %}
+
+{% block content %}
+<div class="checkout-box">
+
+  <h2 style="text-align:center;">Checkout</h2>
+
+  <div class="checkout-item">
+    <p><strong>Event:</strong> {{ event.title }}</p>
+    <p><strong>Date:</strong> {{ event.event_date }}</p>
+    <p><strong>Tickets:</strong> {{ qty }}</p>
+    <p><strong>Price per ticket:</strong> ₹ {{ event.price }}</p>
+  </div>
+
+  <hr>
+
+  <p class="checkout-total">
+    <strong>Total Payable:</strong> ₹ {{ total_amount }}
+  </p>
+
+  <!-- PROCEED TO PAYMENT -->
+  <form action="{% url 'payment' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn-primary" style="width:100%;">
+      Proceed to Payment
+    </button>
+  </form>
+
+</div>
+{% endblock %}

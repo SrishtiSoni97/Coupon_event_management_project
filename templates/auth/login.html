@@ -7,6 +7,16 @@
 </head>
 <body>
 
+{% if messages %}
+<div class="message-container">
+  {% for message in messages %}
+    <div class="message {{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
 <div class="auth-container">
   <div class="auth-card">
     <h2>Welcome Back</h2>
@@ -21,11 +31,18 @@
     </form>
 
     <p class="switch-text">
-      Don’t have an account? 
+      Don’t have an account?
       <a href="{% url 'register' %}">Register</a>
     </p>
   </div>
 </div>
+
+<script>
+  setTimeout(() => {
+    const messages = document.querySelector('.message-container');
+    if (messages) messages.remove();
+  }, 3000);
+</script>
 
 </body>
 </html>

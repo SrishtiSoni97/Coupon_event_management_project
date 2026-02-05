@@ -1,0 +1,54 @@
+{% extends "user/user-base.html" %}
+{% block title %}My Tickets{% endblock %}
+
+{% block content %}
+<h2 class="page-title">
+  {% if event %}
+    {{ event.title }} – Tickets
+  {% else %}
+    My Tickets
+  {% endif %}
+</h2>
+
+<h3 class="section-title">Active Tickets</h3>
+
+<div class="tickets-wrapper">
+{% for order in orders %}
+  {% for ticket in order.tickets.all %}
+    <div class="ticket-card active">
+
+      <p class="ticket-code">{{ ticket.ticket_code }}</p>
+      <p class="event-name">{{ order.event.title }}</p>
+
+      <img src="{{ ticket.qr_code.url }}"
+           class="qr-thumb"
+           onclick="openQR('{{ ticket.qr_code.url }}')">
+
+      <span class="status active">ACTIVE</span>
+    </div>
+  {% endfor %}
+{% empty %}
+  <p>No tickets found.</p>
+{% endfor %}
+</div>
+
+<h3 class="section-title muted">Used / Expired (Coming Soon)</h3>
+
+<!-- QR MODAL -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-modal-content">
+    <span class="close-btn" onclick="closeQR()">×</span>
+    <img id="qrModalImg">
+  </div>
+</div>
+
+<script>
+function openQR(src) {
+  document.getElementById("qrModal").style.display = "flex";
+  document.getElementById("qrModalImg").src = src;
+}
+function closeQR() {
+  document.getElementById("qrModal").style.display = "none";
+}
+</script>
+{% endblock %}
